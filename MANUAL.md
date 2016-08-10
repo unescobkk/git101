@@ -1,0 +1,23 @@
+To install: 
+- in your development directory clone the root installation maintained by ERI team: 
+git clone git@repository.unesco.org:org_unesco_iwp_www_projects.git 
+- in your development directory clone your project installation: git clone git@repository.unesco.org:your_project_name.git 
+- cd org_unesco_iwp_www_projects.git/src/sites/ 
+- ln -s path_to/your_project_name . 
+- create an empty database locally. 
+
+-- in mysql: create database drupal_yourprojectname_local; 
+
+- import the data from the initial installation. 
+
+-- in mysql: mysql -u youruser -p drupal_yourprojectname_local < dump_yourproject.sql 
+
+it is done! now check your settings.php and apache.conf. 
+
+a good starting point are the examples you can find here as settings.php.example and apache.conf.example. 
+
+If you open http://localhost in your broser you will be able to see your website! 
+
+Guidelines: 
+- use your local machine for development and the stage to test content. 
+- once you upload some code in stage, means it is ready for production!!! be carufull! 
