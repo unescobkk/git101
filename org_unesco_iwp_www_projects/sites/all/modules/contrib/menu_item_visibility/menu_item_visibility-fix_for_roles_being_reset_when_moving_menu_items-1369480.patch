@@ -1,0 +1,38 @@
+diff --git a/menu_item_visibility.module b/menu_item_visibility.module
+index e468220..df29c20 100644
+--- a/menu_item_visibility.module
++++ b/menu_item_visibility.module
+@@ -1,7 +1,5 @@
+ <?php
+ 
+-
+-
+ /**
+  * Implements hook_menu_link_alter().
+  *
+@@ -25,7 +23,6 @@ function menu_item_visibility_menu_link_alter(&$item) {
+  */
+ function menu_item_visibility_translated_menu_link_alter(&$item, $map) {
+   global $user;
+-
+   if (!empty($item['access'])) {
+     // Menu administrators can see all links.
+     if (strpos(current_path(), 'admin/structure/menu/manage/' . $item['menu_name']) === 0 && user_access('administer menu')) {
+@@ -72,9 +69,14 @@ function menu_item_visibility_menu_link_insert($link) {
+  * Disabled as a hook until http://drupal.org/node/1013856 is fixed.
+  */
+ function _menu_item_visibility_menu_link_update($link) {
+-  db_delete('menu_links_visibility_role')
+-    ->condition('mlid', $link['mlid'])
+-    ->execute();
++  // http://drupal.org/node/1369480
++  // only delete the roles if the $link object contains actual role information
++  // otherwise role information will be lost when moving menu items
++  if (isset($link['roles'])) {
++    db_delete('menu_links_visibility_role')
++      ->condition('mlid', $link['mlid'])
++      ->execute();
++  }
+ 
+   menu_item_visibility_menu_link_insert($link);
+ }

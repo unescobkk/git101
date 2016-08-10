@@ -1,0 +1,76 @@
+From be3f5df04f95ecd6b9f442a35a8ceddb32a70034 Mon Sep 17 00:00:00 2001
+From: eltermann <felipe.eltermann@gmail.com>
+Date: Fri, 16 Nov 2012 16:24:46 -0200
+Subject: [PATCH] Issue #37 - patching geocoder module to allow searching on
+ country_profile node field
+
+---
+ .../contrib/geocoder/plugins/geocoder_handler/google.inc  |   13 ++++++++++++-
+ .../contrib/geocoder/plugins/geocoder_handler/yahoo.inc   |   13 ++++++++++++-
+ 2 files changed, 24 insertions(+), 2 deletions(-)
+
+diff --git a/src/sites/all/modules/contrib/geocoder/plugins/geocoder_handler/google.inc b/src/sites/all/modules/contrib/geocoder/plugins/geocoder_handler/google.inc
+index 5b1ddb9..1563679 100755
+--- a/src/sites/all/modules/contrib/geocoder/plugins/geocoder_handler/google.inc
++++ b/src/sites/all/modules/contrib/geocoder/plugins/geocoder_handler/google.inc
+@@ -14,7 +14,7 @@ $plugin = array(
+   'title' => t("Google Geocoder"),
+   'description' => t('Geocodes via google geocoder'),
+   'callback' => 'geocoder_google',
+-  'field_types' => array('text', 'text_long', 'addressfield', 'location', 'text_with_summary', 'computed', 'taxonomy_term_reference'),
++  'field_types' => array('text', 'text_long', 'addressfield', 'location', 'text_with_summary', 'computed', 'taxonomy_term_reference', 'entityreference'),
+   'field_callback' => 'geocoder_google_field',
+   'settings_callback' => 'geocoder_google_form',
+   'terms_of_service' => 'http://code.google.com/apis/maps/documentation/geocoding/#Limits',
+@@ -137,6 +137,17 @@ function geocoder_google_field($field, $field_item, $options = array()) {
+     $term = taxonomy_term_load($field_item['tid']);
+     return geocoder_google($term->name);
+   }
++
++  // [2012-11-16 felipe] This is a hack to support country node reference.
++  if ($field['type'] == 'entityreference') {
++    $node = node_load($field_item['target_id']);
++    if (!empty($node->type) && $node->type == 'country_reference') {
++      $field_name = variable_get('unesco_country_profile_geofield', 'field_short_name');
++      if (!empty($node->{$field_name}['und'][0]['value'])) {
++        return geocoder_google($node->{$field_name}['und'][0]['value']);
++      }
++    }
++  }
+ }
+ 
+ function geocoder_google_form($default_values = array()) {
+diff --git a/src/sites/all/modules/contrib/geocoder/plugins/geocoder_handler/yahoo.inc b/src/sites/all/modules/contrib/geocoder/plugins/geocoder_handler/yahoo.inc
+index e7ff15c..40ec47f 100644
+--- a/src/sites/all/modules/contrib/geocoder/plugins/geocoder_handler/yahoo.inc
++++ b/src/sites/all/modules/contrib/geocoder/plugins/geocoder_handler/yahoo.inc
+@@ -14,7 +14,7 @@ $plugin = array(
+   'title' => t("Yahoo Placefinder"),
+   'description' => t('Geocodes via Yahoo Placefinder'),
+   'callback' => 'geocoder_yahoo',
+-  'field_types' => array('text', 'text_long', 'addressfield', 'location', 'text_with_summary', 'computed', 'taxonomy_term_reference'),
++  'field_types' => array('text', 'text_long', 'addressfield', 'location', 'text_with_summary', 'computed', 'taxonomy_term_reference', 'entityreference'),
+   'field_callback' => 'geocoder_yahoo_field',
+   'terms_of_service' => 'http://developer.yahoo.com/geo/placefinder/',
+ );
+@@ -57,6 +57,17 @@ function geocoder_yahoo_field($field, $field_item) {
+     $term = taxonomy_term_load($field_item['tid']);
+     return geocoder_yahoo($term->name);
+   }
++
++  // [2012-11-16 felipe] This is a hack to support country node reference.
++  if ($field['type'] == 'entityreference') {
++    $node = node_load($field_item['target_id']);
++    if (!empty($node->type) && $node->type == 'country_reference') {
++      $field_name = variable_get('unesco_country_profile_geofield', 'field_short_name');
++      if (!empty($node->{$field_name}['und'][0]['value'])) {
++        return geocoder_yahoo($node->{$field_name}['und'][0]['value']);
++      }
++    }
++  }
+ }
+ 
+ function _geocoder_yahoo_geometry(&$data) {
+-- 
+1.7.10.4
+

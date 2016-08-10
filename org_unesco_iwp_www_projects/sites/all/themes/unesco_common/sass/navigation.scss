@@ -1,0 +1,465 @@
+/**
+ * @file
+ * Navigation Styling
+ */
+
+@import "base";
+
+@import "icons-menu/*.png";
+@include all-icons-menu-sprites;
+/*
+ * The active item in a Drupal menu
+ */
+
+li {
+  a {
+    text-decoration: none;
+    color:#004d79;
+    font-weight:bold;
+    &.active,
+    &.active-trail {
+      color:#bdbdbd;
+    }
+    &:hover {
+      text-decoration:underline;
+    }
+  }
+} 
+
+
+/*
+ * Navigation bar
+ */
+
+#navigation {
+  .block {
+    margin-bottom: 0;
+    z-index:400;
+  }
+
+  .block-menu .block-title,
+  .block-menu-block .block-title {
+    @include element-invisible();
+  }
+
+
+
+  ul.links, /* Main menu and secondary menu links */
+  ul.menu { /* Menu block links */
+    display:block;
+    margin: 0;
+    padding: 0;
+    text-align: left; /* LTR */
+    list-style-type: none;
+
+    li { /* A simple method to get navigation links to appear in one line. */
+      float: left; /* LTR */
+      padding: 0 10px 0 10px; /* LTR */
+      margin:7px 0;
+      list-style-type: none !important;
+      &.last {
+        border-right:none;
+      }      
+    }
+  }
+}
+
+.region-navigation {
+}
+
+/*
+ * Main menu and Secondary menu links
+ */
+ 
+
+#site-logo {
+  @include replace-text-with-dimensions('../images/unesco_logo_big.png');
+  display:block;
+  float:left;
+  margin:8px 0 0 5px;
+  padding:0;
+  span {
+    display:none;
+  }
+}
+
+/*#site-name {
+  width:373px;
+  height:80px; 
+  margin:0;
+  padding:0;
+  float:left;
+  a {
+    font: 40px $helvetica;
+    color:#FFFFFF;
+    text-decoration: none;
+    display:block;
+    margin:34px 0 0 20px;
+  }
+}*/
+
+#site-slogan {
+  font: italic normal normal 16px $arial;
+  color:#FFFFFF;
+  text-shadow:1px 1px 0 #333;  
+  width: 365px;
+  float:left;
+  margin:38px 0 0 0;
+} 
+
+#name-and-slogan {
+  display:block;
+  float:left;
+  height:80px;
+  width:823px;  
+}
+
+#header .block-om-maximenu {
+  border:none;
+  padding:0;
+  margin:0;
+  background-color: #0075d1;
+  @include border-radius(5px 5px 5px 5px);
+  width: 100%;
+  clear:both;
+  
+  $menuheight: 42px;
+  $about:     114px;
+  $themes:    122px;
+  $countries: 134px;
+  $news:      150px;
+  $joinus:    150px;
+  $resources: 140px;
+  $leaf-pad:  28px;
+  $submenu: 300px;
+
+  height:42px;
+  float:left;
+  
+  .block-title {
+    @include element-invisible();  
+  }
+  
+  
+  .block-title {
+    display:none;
+  }  
+  
+  .om-maximenu {    
+    padding:0;
+    margin:0;
+    border:none;
+    background-color:transparent;
+    height: $menuheight;
+    
+    .block-title {
+      display:none;
+    }
+
+    .om-leaf.last .om-maximenu-content {
+      left: -135px;
+    }
+    
+    li {
+      border-right: 1px solid #005c9e;
+      float: left;
+      font-size: 14px;
+      height: $menuheight;
+      margin: 0;
+      &.first {
+        border-left: medium none;
+      }    
+    
+      &.last {
+        border-right: medium none;
+      }
+
+      .menu li {
+        border-right: none;
+      }
+
+      .om-maximenu-no-style {
+        .om-maximenu-middle-right {
+          padding:10px 0;
+        }
+        .om-maximenu-middle {
+          background-color: #0075d1;
+        }
+      }
+
+      .om-maximenu-content {
+        top:42px;
+        background-color:#0075d1;
+        border:1px solid #bfbfbf;
+        border-top:none;        
+                
+        .block-menu .title {
+          display:none;
+        }
+        .block {
+          float:left;
+          padding:0;
+          /*background: transparent url('../images/menu-background.png') repeat 0 0;*/
+        }
+        .menu {
+          float:left;
+          padding:0;
+          span {
+            color:$unesco-color;
+            font-size: 12px;
+            font-weight:bold;
+            display:block;
+            margin-bottom: 10px;
+          }
+          li {
+            height:auto;
+            float:left;
+            width:$submenu - 20;
+            padding:0 0 0 10px;
+            &.last {
+              border-right:none;
+              
+            }
+            &.first {
+              border-left:none;
+              
+            }
+            
+            .menu-resources {
+              background: transparent url('../images/picto_ressources.gif') no-repeat scroll left top;
+              padding: 0.7em 0.5em 0.7em 40px;
+            }
+            #menu-resources-bookshop    {background-position: 0 -260px;}
+            #menu-resources-conventions {background-position: 0 -130px;}
+            #menu-resources-media       {background-position: 0 -70px;}
+            #menu-resources-multimedia  {background-position: 0 0;}
+            #menu-resources-statistics  {background-position: 0 -200px;}
+            
+                        
+            a {
+              color: black;
+              font-size:12px;
+              height: auto;
+              text-transform: none;
+              text-align: left;
+              display:block;
+              background-image: inline-image("../images/menu-arrow.png");
+              background-repeat: no-repeat;
+              background-position: 0 center;
+              line-height: 20px;
+              padding: 5px 5px 5px 25px;
+              border:1px solid #0075d1;
+            } 
+            a:hover {
+              background-position: 0 center;
+              border:1px solid #B8B8B8;
+              background-color:#0075d1;
+            }
+            .menu {
+              float:left;
+              padding:0;
+              li {
+                float:none;
+                border-left:none;
+                padding:0;
+                
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    a {
+      color: #FFF;
+      text-shadow:1px 1px 0 #333;
+      display: block;
+      height: $menuheight;
+      line-height: $menuheight;
+      position: relative;
+      text-align: left;
+      text-transform: uppercase;
+      padding: 0;
+      font-size:14px;      
+      font-weight: normal;
+      
+      span {
+        display: block;
+        height: 34px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 44px;
+      }
+    }
+    
+    a:hover,
+    span:hover {
+      color: white;
+      text-decoration: none;
+      background: rgba(0, 0, 0, 0.2) url('../images/menu-hover.png') no-repeat scroll 50% bottom;
+    }      
+    
+
+    ul li ul li a {
+      text-shadow:none;
+      
+    }  
+
+    .om-leaf > span {
+      color: #FFF;
+      text-shadow:1px 1px 0 #333;
+      display: block;
+      height: $menuheight;
+      line-height: $menuheight;
+      position: relative;
+      text-align: left;
+      text-transform: uppercase;
+      padding: 0;
+      font-size:14px;
+    }
+
+
+    .om-leaf > a,
+    .om-leaf > span {
+      padding:0px $leaf-pad 0 $leaf-pad;
+    }
+
+    #om-leaf-om-u15-976677445-8 {
+      border-right:none;
+      a {
+        display:block;
+        padding:0;
+        margin-left: 5px;
+        margin-top: 5px;
+        @include replace-text-with-dimensions('../images/menu-home-logo.png');
+      }      
+    } 
+
+    #om-leaf-om-u15-976677445-2 {
+      @extend .icons-menu-about;
+    }
+
+    #om-leaf-om-u15-976677445-3 {               
+      @extend .icons-menu-themes;
+      h3.title {
+        display: none;
+      }
+      
+      & > .om-maximenu-content {
+        /*left: -260px;*/        
+      }
+    }  
+
+
+
+    #om-leaf-om-u15-976677445-4 {            
+      @extend .icons-menu-countries;
+    }                                
+
+    #om-leaf-om-u15-976677445-5 {
+      @extend .icons-menu-joinus;                 
+    }                                
+
+    #om-leaf-om-u15-976677445-6 {               
+      @extend .icons-menu-partnerships;                 
+    }                                
+
+    #om-leaf-om-u15-976677445-7 {
+      @extend .icons-menu-resources;                 
+    }
+
+    .leaf-about-us .om-maximenu-content,
+    #om-leaf-om-u15-976677445-2 .om-maximenu-content {
+      width: $submenu * 1;
+    }
+                                     
+    .leaf-themes #om-maximenu-content,
+    #om-leaf-om-u15-976677445-3 .om-maximenu-content {
+      width: $submenu * 1;
+    }
+
+    .leaf-countries .om-maximenu-content,
+    #om-leaf-om-u15-976677445-4 .om-maximenu-content {
+      width: $submenu * 2;
+    }
+    
+    .leaf-news-and-events .om-maximenu-content,
+    #om-leaf-om-u15-976677445-5 .om-maximenu-content {
+      width: $submenu * 2;
+    }    
+  }
+}
+
+#header .menu ul li a {
+    color: #3F95C3;
+    display: block;
+    padding: 12px;
+    text-align: center;
+}
+
+
+#secondary-menu {
+}
+
+
+
+/*
+ * Menu blocks
+ */
+
+.block-menu {
+}
+
+/*
+ * "Menu block" blocks
+ *
+ * Drupal core has limited ways in which it can display its menus. To get around
+ * these limitations, see http://drupal.org/project/menu_block
+ */
+
+.block-menu-block {
+}
+ 
+
+.om-maximenu-no-style .om-maximenu-middle {
+  background: #0075d1;
+}
+
+.om-maximenu-no-style .om-maximenu-middle-right {
+  padding:10px 0;
+}
+
+#navigation {
+}
+#navigation .block {
+    margin-bottom: 0;
+}
+#navigation .block-menu .block-title, #navigation .block-menu-block .block-title {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+}
+#navigation ul.links, #navigation ul.menu {
+    background-color: white;
+    border: 1px solid #D6D6D6;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 2px 0 #BBBBBB;
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+#navigation ul.links li, #navigation ul.menu li {
+    border-right: 1px solid #BDBDBD;
+    float: left;
+    list-style-image: none;
+    list-style-type: none;
+    margin: 7px 0;
+    padding: 0 10px;
+}
+#navigation ul.links li.last, #navigation ul.menu li.last {
+    border-right: medium none;
+}  

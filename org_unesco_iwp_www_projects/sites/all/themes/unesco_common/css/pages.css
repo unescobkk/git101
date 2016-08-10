@@ -1,0 +1,593 @@
+/**
+ * @file
+ * Page Styling
+ *
+ * Style the markup found in page.tpl.php. Also includes some styling of
+ * miscellaneous Drupal elements that appear in the $content variable, such as
+ * ul.links, .pager, .more-link, etc.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/icons\/\*\.png}line{font-family:\0000382}}
+.icons-sprite, .icons-arrow-down, .icons-pdf, .icons-plus, .icons-print, .icons-rss, .icons-search {
+  background: url('../images/icons-s25062c2947.png') no-repeat;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-arrow-down {
+  background-position: 0 -80px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-pdf {
+  background-position: 0 -16px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-plus {
+  background-position: 0 -48px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-print {
+  background-position: 0 -32px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-rss {
+  background-position: 0 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-search {
+  background-position: 0 -64px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/icons-social\/\*\.png}line{font-family:\00003106}}
+.icons-social-sprite, .icons-social-share_facebook, .icons-social-share_google, .icons-social-share_itunes, .icons-social-share_linkedin, .icons-social-share_rss, .icons-social-share_twitter, .icons-social-share_vkontakte, .icons-social-share_weibo, .icons-social-share_youtube {
+  background: url('../images/icons-social-sa0cda7d78b.png') no-repeat;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_facebook {
+  background-position: 0 -351px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_google {
+  background-position: 0 -132px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_itunes {
+  background-position: 0 -88px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_linkedin {
+  background-position: 0 -308px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_rss {
+  background-position: 0 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_twitter {
+  background-position: 0 -176px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_vkontakte {
+  background-position: 0 -264px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_weibo {
+  background-position: 0 -44px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_youtube {
+  background-position: 0 -220px;
+}
+
+/*
+ * Body
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\0000317}}
+body {
+  margin: 0;
+  padding: 0;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAACZCAIAAACdV+w6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADJJREFUeNrsyUENACAMBLBbEIMKJCAI9zMwAyTtt5X7MlnZRwghhBBCCCGE+DVaAAEGAAwLPfBl7tSbAAAAAElFTkSuQmCC') repeat-x scroll 0 0 #ebebeb;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\0000324}}
+body.toolbar {
+  background-position: 0 30px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\0000327}}
+body.toolbar-drawer {
+  background-position: 0 65px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\0000332}}
+.lt-ie9 img {
+  max-width: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\0000336}}
+#page {
+  padding-bottom: 50px;
+}
+
+/*
+ * The skip-link link will be completely hidden until a user tabs to the link.
+ * See the element-focusable rule in system.base.css.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\0000346}}
+#skip-link {
+  margin: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\0000350}}
+#skip-link a,
+#skip-link a:visited {
+  display: block;
+  width: 100%;
+  padding: 2px 0 3px 0;
+  text-align: center;
+  background-color: #666;
+  color: #fff;
+}
+
+/*
+ * Header
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\0000364}}
+#header {
+  height: 153px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\0000368}}
+#header li,
+#header li.leaf {
+  list-style: none inside;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\0000372}}
+#header #name-and-slogan, #header #name-and-slogan #site-name, #header #name-and-slogan #site-slogan {
+  /* Wrapper for website name and slogan */
+  text-transform: uppercase;
+  font: normal normal normal 40px Helvetica, Arial, "Nimbus Sans L", sans-serif;
+  height: 80px;
+  line-height: 80px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\0000380}}
+#header #name-and-slogan #site-name, #header #name-and-slogan #site-name #site-name, #header #name-and-slogan #site-slogan #site-name {
+  width: 178px;
+  padding-left: 128px;
+  background: url("../images/unesco_logo_bkg.png") no-repeat scroll 43px 10px transparent;
+  margin: 0;
+  float: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\0000390}}
+#header #name-and-slogan #site-name a:link, #header #name-and-slogan #site-name #site-name a:link, #header #name-and-slogan #site-slogan #site-name a:link,
+#header #name-and-slogan #site-name a:visited,
+#header #name-and-slogan #site-name #site-name a:visited,
+#header #name-and-slogan #site-slogan #site-name a:visited,
+#header #name-and-slogan #site-name a:hover,
+#header #name-and-slogan #site-name #site-name a:hover,
+#header #name-and-slogan #site-slogan #site-name a:hover,
+#header #name-and-slogan #site-name a:focus,
+#header #name-and-slogan #site-name #site-name a:focus,
+#header #name-and-slogan #site-slogan #site-name a:focus {
+  color: white;
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\0000396}}
+#header #name-and-slogan #site-slogan, #header #name-and-slogan #site-name #site-slogan, #header #name-and-slogan #site-slogan #site-slogan {
+  /* The slogan (or tagline) of a website */
+  margin: 0;
+  color: #FFF;
+  float: left;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003107}}
+.region-header {
+  /* Wrapper for any blocks placed in the header region */
+  clear: both;
+  /* Clear the logo */
+}
+
+/*
+ * Main (container for everything else)
+ */
+/*
+ * Content
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003123}}
+#content .wrapper {
+  background: white;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003131}}
+#highlighteds {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003136}}
+#highlighteds .block {
+  background-color: transparent;
+  margin: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003142}}
+.breadcrumb {
+  /* The path to the current page in the form of a list of links */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003143}}
+.breadcrumb ol {
+  margin: 0;
+  padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003147}}
+.breadcrumb li {
+  color: #bdbdbd;
+  display: inline;
+  font-weight: normal;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003154}}
+.breadcrumb li a {
+  color: #bdbdbd;
+  font-weight: normal;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003161}}
+.region-wrapper {
+  background: white;
+  padding: 5px;
+  border: 1px solid #dddddd;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003167}}
+#content .region-wrapper {
+  padding: 10px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003176}}
+h1.title,
+h2.node-title,
+h2.block-title,
+h2.title,
+h2.comment-form,
+h3.title {
+  /* Comment title */
+  margin: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003180}}
+tr.even {
+  /* Some tables have rows marked even or odd. */
+  /* background-color: #eee; */
+  /* Drupal core uses a #eee background */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003184}}
+tr.odd {
+  /* background-color: #eee; */
+  /* Drupal core uses a #eee background */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003188}}
+div.messages {
+  /* Important messages (status, warning, and error) for the user. See also the declarations in messages.css. */
+  margin: 1.5em 0;
+  /* Drupal core uses "6px 0" margin */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003191}}
+div.messages ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003197}}
+div.status {
+  /* Normal priority messages */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003201}}
+div.warning,
+tr.warning {
+  /* Medium priority messages */
+  /* border: 1px solid #f0c020; */
+  /* Drupal core uses: 1px solid #f0c020 */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003206}}
+div.error,
+tr.error {
+  /* High priority messages. See also the .error declaration below. */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003209}}
+.error {
+  /* Errors that are separate from div.messages status messages. */
+  /* color: #e55; */
+  /* Drupal core uses a #e55 background */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003213}}
+.warning {
+  /* Warnings that are separate from div.messages status messages. */
+  /* color: #e09010; */
+  /* Drupal core uses a #e09010 background */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003217}}
+.tabs {
+  /* See also the tabs.css file. */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003220}}
+.region-help {
+  /* Help text on a page */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003223}}
+.more-help-link {
+  /* Link to more help */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003226}}
+.region-content {
+  /* Wrapper for the actual page content */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003229}}
+ul.inline {
+  /* List of links generated by theme_links() */
+  display: inline;
+  padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003233}}
+ul.inline li {
+  display: inline;
+  list-style-type: none;
+  padding: 0 1em 0 0;
+  /* LTR */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003239}}
+span.field-label {
+  /* The inline field label used by the Fences module */
+  padding: 0 1em 0 0;
+  /* LTR */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003243}}
+.item-list .pager {
+  /* A list of page numbers when more than 1 page of content is available */
+  padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003246}}
+.item-list .pager li {
+  /* Each page number in the pager list */
+  padding: 0 0.5em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003251}}
+.feed-icon {
+  /* The link to the RSS or Atom feed for the current list of content */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003254}}
+.more-link {
+  /* Aggregator, blog, and forum more link */
+}
+
+/*
+ * First sidebar (on left in LTR languages, on right in RTL)
+ *
+ * Remember to NOT add padding or margin to your .region-sidebar-first
+ * (see the layout.css file.)
+ */
+/*
+ * Second sidebar (on right in LTR languages, on left in RTL)
+ *
+ * Remember to NOT add padding or margin to your .region-sidebar-second
+ * (see the layout.css file.)
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003277}}
+.region-header-top {
+  height: 35px;
+}
+
+/*
+ * Footer
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003285}}
+#footer-wrapper {
+  background: url("../images/page-background-bottom.png") repeat-x scroll 0 0 #004d79;
+  padding: 32px 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003288}}
+#footer-wrapper #footer {
+  text-align: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003290}}
+#footer-wrapper #footer .block-title {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url('../images/../images/www_unesco_org.png?1352285391');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 185px;
+  height: 12px;
+  display: block;
+  margin: 10px auto;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003295}}
+#footer-wrapper #footer ul {
+  padding: 0;
+  margin: 0;
+  list-style: none inside;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003297}}
+#footer-wrapper #footer ul li {
+  padding: 0;
+  margin: 0;
+  list-style: none inside;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003299}}
+#footer-wrapper #footer ul li a {
+  color: white;
+}
+
+/*
+ * Page bottom
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003311}}
+.region-bottom {
+  /* Wrapper for any blocks placed in the page bottom region */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003314}}
+.locale-untranslated {
+  font-style: normal;
+  text-decoration: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003319}}
+ul#views-display-menu-tabs li {
+  float: left;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003326}}
+.node-type-page .field field-name-field-copy,
+.node-type-page .field field-name-field-caption {
+  display: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003332}}
+.node-type-page .field-name-field-media-image .field field-name-field-copy,
+.node-type-page .field-name-field-media-image .field field-name-field-caption {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003339}}
+figure.field-name-field-media-image {
+  display: block;
+  position: relative;
+  width: 329px;
+  margin: 10px 20px 10px 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003345}}
+figure.field-name-field-media-image img {
+  border: 1px solid black;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003349}}
+figure.field-name-field-media-image.float-left {
+  float: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003352}}
+figure.field-name-field-media-image.float-right {
+  float: right;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003357}}
+figure.field-name-field-media-image figcaption {
+  display: block;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003360}}
+figure.field-name-field-media-image figcaption br {
+  display: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003364}}
+figure.field-name-field-media-image figcaption .field-name-field-copy {
+  color: white;
+  top: 186px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003368}}
+figure.field-name-field-media-image figcaption .field-name-field-copy span {
+  display: none;
+  white-space: nowrap;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003373}}
+figure.field-name-field-media-image figcaption .field-name-field-caption {
+  position: relative;
+  text-align: left;
+  padding: 0;
+  top: -20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003380}}
+figure.field-name-field-media-image figcaption .field-name-field-caption span {
+  padding: 10px 0;
+  background-color: black;
+  height: 20px;
+  width: 100%;
+  background-image: none;
+  color: white;
+  display: none;
+  float: none;
+  font-weight: normal;
+  line-height: normal;
+  margin: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003402}}
+.i18n-en figure figcaption .field-name-field-caption span.wysiwyg-media-en {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003405}}
+.i18n-en figure figcaption .field-name-field-copy span.wysiwyg-media-en {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003402}}
+.i18n-fr figure figcaption .field-name-field-caption span.wysiwyg-media-fr {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003405}}
+.i18n-fr figure figcaption .field-name-field-copy span.wysiwyg-media-fr {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003402}}
+.i18n-es figure figcaption .field-name-field-caption span.wysiwyg-media-es {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003405}}
+.i18n-es figure figcaption .field-name-field-copy span.wysiwyg-media-es {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003402}}
+.i18n-ru figure figcaption .field-name-field-caption span.wysiwyg-media-ru {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003405}}
+.i18n-ru figure figcaption .field-name-field-copy span.wysiwyg-media-ru {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003402}}
+.i18n-ar figure figcaption .field-name-field-caption span.wysiwyg-media-ar {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003405}}
+.i18n-ar figure figcaption .field-name-field-copy span.wysiwyg-media-ar {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003402}}
+.i18n-zh figure figcaption .field-name-field-caption span.wysiwyg-media-zh {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/pages\.scss}line{font-family:\00003405}}
+.i18n-zh figure figcaption .field-name-field-copy span.wysiwyg-media-zh {
+  display: block;
+}

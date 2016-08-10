@@ -1,0 +1,14 @@
+name = UNESCO internationalization
+description = Contains fixes for UNESCO websites internationalization
+core = 7.x
+package = UNESCO
+version = 7.x-1.0 
+project = unesco_i18n
+
+
+
+; Loadable code files
+files[] = unesco_18n.module
+
+; Module dependencies
+; dependencies[] = 

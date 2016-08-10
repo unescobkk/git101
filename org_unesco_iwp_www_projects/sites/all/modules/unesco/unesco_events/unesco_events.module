@@ -1,0 +1,406 @@
+<?php
+/**
+ * @file
+ * Code for the UNESCO Events feature.
+ */
+
+include_once 'unesco_events.features.inc';
+
+/**
+ * Implements hook_feeds_plugins().
+ */
+function unesco_events_feeds_plugins() {
+  $info = array();
+
+  $info['UnescoEventsNodeProcessor'] = array(
+    'name' => 'UNESCO Events processor',
+    'description' => 'Create and update Events.',
+    'help' => 'Create and update Events from parsed content.',
+    'handler' => array(
+      'parent' => 'FeedsNodeProcessor',
+      'class' => 'UnescoEventsNodeProcessor',
+      'file' => 'UnescoEventsNodeProcessor.inc',
+      'path' => drupal_get_path('module', 'unesco_events') . '/plugins',
+    ),
+  );
+
+  return $info;
+}
+
+/**
+ * Implements hook_feeds_after_parse().
+ */
+function unesco_events_feeds_after_parse(FeedsSource $source, FeedsParserResult $result) {
+  $importer_id = $source->importer()->id;
+  if ($importer_id == 'unesco_nice_events') {
+    require_once DRUPAL_ROOT . '/includes/locale.inc';
+    $countries = country_get_list();
+
+    $available_languages = array(
+      'fr' => array(
+        'index' => 0,
+        'suffix' => 'FR',
+        'langcode' => 'fr',
+      ),
+      /**
+       * Uncomment to enable Spanish nodes.
+      'es' => array(
+        'index' => 1,
+        'suffix' => 'OL',
+        'langcode' => 'es',
+      ),
+      */
+      'en' => array(
+        'index' => 2,
+        'suffix' => 'EN',
+        'langcode' => 'en',
+      ),
+    );
+
+    $multilangual_fields = array(
+      'guid' => 'xpathparser:0',
+      'title' => 'xpathparser:1',
+      'language' => 'xpathparser:2',
+      'field_description' => 'xpathparser:3',
+      'field_description_summary' => 'xpathparser:4',
+      'field_link:url' => 'xpathparser:21',
+      'field_link:title' => 'xpathparser:35',
+      'unesco_image_caption' => 'xpathparser:22',
+      'unesco_event_theme_page' => 'xpathparser:14',
+    );
+
+    $encoded_values = array(
+      'xpathparser:10', // Postal Address: Sub premise
+      'xpathparser:13', // Postal Address: Country
+      'xpathparser:26', // UNESCO Delegation
+      'xpathparser:28', // UNESCO Major Programme
+      'xpathparser:29', // UNESCO Type of Event
+      'xpathparser:30', // UNESCO Responsible Unit
+    );
+
+    $theme_encoded_values = array(
+      'xpathparser:14', // UNESCO Theme Page
+    );
+
+    $country_xpath = 'xpathparser:13';
+    $theme_page_xpath = 'xpathparser:14';
+    $author_xpath = 'xpathparser:18';
+    $image_xpath = 'xpathparser:19';
+    $url_xpath = 'xpathparser:21';
+    $title_xpath = 'xpathparser:35';
+    $sector_xpath = 'xpathparser:25';
+
+    $items = array();
+
+    foreach ($result->items as $item) {
+      $theme_decoded = array();
+      $decoded = array();
+      $tmp_array = array();
+      $count = 0;
+      foreach ($theme_encoded_values as $i) {
+        $tmp_array = explode('|', $item[$i]);
+        foreach ($tmp_array as $j) {
+          array_shift($j);
+          $count++;
+          $theme_decoded[$count] = _unesco_events_parse_encoded_data($j);
+        }
+      }
+      foreach ($encoded_values as $i) {
+        $decoded[$i] = _unesco_events_parse_encoded_data($item[$i]);
+      }
+
+      // Preprocess URL field
+      $aux = explode('@#&#@', $item[$url_xpath]);
+      $global_urls = $aux[0];
+      $item[$url_xpath] = $aux[1];
+      // Process Author
+      $item[$author_xpath] = _unesco_events_get_uid_from_nice($item[$author_xpath], 1);
+
+      // Process Image
+      $item[$image_xpath] = _unesco_events_preprocess_image($item[$image_xpath]);
+
+      // Process Sector
+      $item[$sector_xpath] = _unesco_events_preprocess_sector($item[$sector_xpath]);
+
+      // Explode multilangual fields
+      foreach ($multilangual_fields as $field_name => $xpath) {
+          $item[$xpath] = explode('###', $item[$xpath]);
+      }
+
+      foreach ($available_languages as $language) {
+        $new_item = $item;
+
+        // Process "###" separated values
+        foreach ($multilangual_fields as $field_name => $xpath) {
+          $new_item[$xpath] = isset($item[$xpath][$language['index']]) ? $item[$xpath][$language['index']] : '';
+        }
+
+        // Process encoded values
+        foreach ($encoded_values as $i) {
+          $new_item[$i] = isset($decoded[$i][$language['langcode']]) ? $decoded[$i][$language['langcode']] : '';
+        }
+
+        // Process theme_encoded values
+        foreach ($theme_decoded as $i) {
+          $new_item[$theme_page_xpath] .= isset($i[$language['langcode']]) ? $i[$language['langcode']] . "; " : '' . "; ";
+        }
+
+        // Process URL
+	$tmp = _unesco_events_get_url($global_urls, $new_item[$url_xpath]);
+        $new_item[$title_xpath] = $tmp[1];
+        $new_item[$url_xpath] = $tmp[0];
+
+        // Process country
+        if (isset($decoded[$country_xpath]['en']) && $country_code = array_search($decoded[$country_xpath]['en'], $countries)) {
+          $new_item[$country_xpath] = $country_code;
+        }
+        else {
+          $new_item[$country_xpath] = '';
+        }
+
+        // Append generated item
+        //dpm($new_item);
+        $items[] = $new_item;
+      }
+    }
+    //dpm($items);
+
+    // Reset parsed items with generated items
+    $result->items = $items;
+  }
+}
+
+/**
+ * Aux function that check for existing translation NID and set node.tnid
+ * accordingly.
+ *
+ * @param $node
+ */
+function _unesco_events_set_tnid($node) {
+  $wrapper = entity_metadata_wrapper('node', $node);
+  $niceid = $wrapper->field_niceid->value();
+
+  $sql = "SELECT n.nid FROM {node} n INNER JOIN {field_data_field_niceid} fdfn ON n.vid = fdfn.revision_id AND fdfn.bundle = 'event' WHERE fdfn.field_niceid_value = :niceid AND n.tnid = n.nid";
+  if ($original_nid = db_query($sql, array(':niceid' => $niceid))->fetchField()) {
+    $node->tnid = $original_nid;
+  }
+  else {
+    $node->tnid = $node->nid;
+  }
+  node_save($node);
+}
+
+/**
+ * @param $str - Encoded data. E.g:
+ * "EN|a3209d36-29c6-4a2b-8fa8-db4ba8ddd688§EN$[VALUE]§FR$[VALUE]".
+ */
+function _unesco_events_parse_encoded_data($str) {
+  $data_raw = $str;
+  $data_arr = explode('§', $data_raw);
+  array_shift($data_arr); // disconsider "EN|a35819f5-b11a-[...]"
+  
+  $data = array();
+  foreach ($data_arr as $data_item_raw) {
+    $data_item_arr = explode('$', $data_item_raw);
+    $langcode = strtolower($data_item_arr[0]);
+    $data[$langcode] = $data_item_arr[1];
+  }
+
+  return $data;
+}
+
+/**
+ * Aux funciton that retrieves a "theme page" node.
+ */
+function _unesco_events_get_theme_page_nid($title, $langcode) {
+  if (empty($title)) {
+    return NULL;
+  }
+  $sql = "SELECT n.nid FROM node n WHERE n.type = 'theme_page' AND n.language = :langcode AND n.title = :title";
+  if ($existing_nid = db_query($sql, array(':langcode' => $langcode, ':title' => $title))->fetchField()) {
+    return $existing_nid;
+  }
+  else {
+    // TODO - create node if it doesn't exist ?
+    return NULL;
+  }
+}
+
+/**
+ * @param $str - "56;#Lizet, Anne"
+ * @param $default
+ * @return $uid - if success; $default otherwise
+ */
+function _unesco_events_get_uid_from_nice($str, $default = 0) {
+  $arr = explode('#', $str);
+
+  if (count($arr) == 2) {
+    $arr2 = explode(', ', $arr[1]);
+    if (count($arr2) == 2) {
+      $sql = 'SELECT u.uid FROM {users} u
+        INNER JOIN {field_data_field_surname} surname ON u.uid = surname.entity_id
+        INNER JOIN {field_data_field_name} name ON u.uid = name.entity_id
+      WHERE name.field_name_value = :name AND surname.field_surname_value = :surname';
+      $args = array(
+        ':name' => $arr2[1],
+        ':surname' => $arr2[0],
+      );
+      if ($uid = db_query($sql, $args)->fetchField()) {
+        return $uid;
+      }
+    }
+  }
+
+  return $default;
+}
+
+/**
+ * @param $str - ";#EN (English);#Nepali;#"
+ * @return array - Each item is a field item: array('value' => 'English')
+ */
+function _unesco_events_parse_languages($str) {
+  $values = array();
+  $aux = explode(';#', $str);
+
+  foreach ($aux as $item) {
+    if (!empty($item)) {
+      $matches = array();
+      if (preg_match('/.*\((.*)\)/', $item, $matches)) {
+        // Get value inside parenthesis: English
+        $values[] = $matches[1];
+      }
+      else {
+        // Nepali
+        $values[] = $item;
+      }
+    }
+  }
+
+  $return = array();
+  foreach ($values as $value) {
+    $return[] = array('value' => $value);
+  }
+
+  return $return;
+}
+
+/**
+ * @param $str "http://www.unesco[...]-f1.jpg, http://www.unesco[...]-f2.jpg"
+ * @return $url "http://www.unesco[...]-f1.jpg"
+ */
+function _unesco_events_preprocess_image($str) {
+  $arr = explode(',', $str);
+  if (!empty($arr)) {
+    // TODO - we are using only the first URL
+    $url = array_shift($arr);
+    return trim($url);
+  }
+
+  return '';
+}
+
+
+function _unesco_events_get_url($global_urls = '', $local_urls = '') {
+  $return = '';
+
+//drupal_set_message(t('#prima global urls %string', array('%string' => $global_urls)), 'error');
+  $global_arr = explode('§', $global_urls);
+  foreach ($global_arr as $url) {
+    if (!empty($url)) {
+      $return = $url;
+    }
+  }
+//drupal_set_message(t('#dopo global urls %string', array('%string' => $return)), 'error');
+
+//drupal_set_message(t('#prima local urls %string', array('%string' => $local_urls)), 'error');
+  $local_arr = explode('§', $local_urls);
+  foreach ($local_arr as $url) {
+    if (!empty($url)) {
+      $return = $url;
+    }
+  }
+//drupal_set_message(t('#dopo local urls %string', array('%string' => $return)), 'error');
+
+  // Format: "Url, Text"
+  // Now, extracting url...
+  $return = explode(', ', trim($return));
+  if (valid_url($return[0], TRUE)) {
+//drupal_set_message(t(' url:  %string', array('%string' => $return[0])), 'error');
+//drupal_set_message(t(' titolo: %string', array('%string' => $return[1])), 'error');
+    //return $return[0];
+    return $return;
+  }
+
+  return '';
+}
+
+function _unesco_events_get_organization_nid($title, $create = TRUE) {
+  if (empty($title)) {
+    return NULL;
+  }
+
+  $sql = "SELECT n.nid FROM node n WHERE n.type = 'organization' AND n.title = :title";
+  if ($existing_nid = db_query($sql, array(':title' => $title))->fetchField()) {
+    return $existing_nid;
+  }
+  elseif ($create) {
+    // Create organization node
+//    $node = new stdClass();
+//    $node->type = 'organization';
+//    $node->title = check_plain($title);
+//    $node->uid = 1;
+//    node_save($node);
+//
+//   if (isset($node->nid) && !empty($node->nid)) {
+//      return $node->nid;
+//    }
+  }
+
+  return NULL;
+}
+
+function _unesco_events_get_tid($vocabulary, $term_name, $langcode, $create = TRUE) {
+  $term_name = trim($term_name);
+  if (empty($term_name)) {
+    return NULL;
+  }
+
+  $sql = "SELECT t.tid FROM {taxonomy_term_data} t INNER JOIN {taxonomy_vocabulary} v ON t.vid = v.vid WHERE v.machine_name = :vocabulary AND t.name = :name";
+  $args = array(
+    ':vocabulary' => $vocabulary,
+    ':name' => $term_name,
+  );
+  if ($existing_tid = db_query($sql, $args)->fetchField()) {
+    return $existing_tid;
+  }
+  elseif ($create) {
+    // Create term
+    if ($vid = db_query('SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = :vocabulary', array(':vocabulary' => $vocabulary))->fetchField()) {
+      $term = new stdClass();
+      $term->vid = $vid;
+      $term->name = $term_name;
+      taxonomy_term_save($term);
+      if (isset($term->tid) && !empty($term->tid)) {
+        return $term->tid;
+      }
+    }
+  }
+
+  return NULL;
+}
+
+/**
+ * @param $str - "1348;#Sector_FU_KAT"
+ * @return $sector - "FU/KAT"
+ */
+function _unesco_events_preprocess_sector($str) {
+  $sector = '';
+
+  $aux = explode(';#', $str);
+  if (count($aux) == 2) {
+    $sector = substr($aux[1], 7); // remove "Sector_"
+    $sector = str_replace('_', '/', $sector);
+  }
+
+  return $sector;
+}

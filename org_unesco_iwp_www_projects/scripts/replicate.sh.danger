@@ -1,0 +1,70 @@
+#!/bin/bash
+# Usage: $0 [source] [target]
+
+display_usage() {
+    echo -e "\nUsage:\n$0 [-h] [-l] [source] [target] \n" 
+    echo -e " where:"
+    echo -e "  -h  show this help text"
+    echo -e "  -l  list the available configurations TBD"
+    echo -e "  possible values:"
+    echo -e "      @unescorg.local"
+    echo -e "      @unescorg.stage"
+    echo -e "      @unescorg.prod"
+}
+
+# if less than two arguments supplied, display usage 
+if [  $# -le 1 ] 
+then 
+    display_usage
+    exit 1
+fi 
+
+# check whether user had supplied -h or --help . If yes display usage 
+if [[ ( $# == "--help") ||  $# == "-h" ]] 
+then 
+    display_usage
+    exit 0
+fi 
+
+SOURCE=$1
+TARGET=$2
+red='\033[0;31m'
+green='\033[0;32m'
+NC='\033[0m' # No Color
+
+# check target value. It should never be set as prod!!!
+if [ "$TARGET" == "@unescorg.prod" ]
+then
+    echo -e "${red}*** Hei mate, you are trying to do weird things in production! better not use scripting!!!${NC}"
+    exit 1
+fi
+
+echo -e "${red}Source: $SOURCE ${NC}=>${green} Target: $TARGET${NC} \n"
+drush sql-sync $SOURCE $TARGET
+
+echo -e "${green}Disabling production specific modules${NC} \n" 
+drush $TARGET dis -y googleanalytics ldap_sso ldap_authentication ldap_authorization_drupal_role ldap_authorization  ldap_authorization_og ldap_feeds ldap_help ldap_profile unesco_authentication ldap_query ldap_servers
+
+echo -e "${green}Uninstall production specific modules${NC} \n" 
+drush $TARGET pm-uninstall -y googleanalytics ldap_sso ldap_authentication ldap_authorization_drupal_role ldap_authorization  ldap_authorization_og ldap_feeds ldap_help ldap_profile unesco_authentication ldap_query ldap_servers
+
+if [ "$TARGET" == "@unescorg.local" ]
+then
+echo -e "${green}Resetting your base_root to xx.localhost${NC} \n" 
+    drush $TARGET sqlq "UPDATE languages SET domain='ar.localhost' WHERE language='ar'; UPDATE languages SET domain='en.localhost' WHERE language='en'; UPDATE languages SET domain='es.localhost' WHERE language='es'; UPDATE languages SET domain='fr.localhost' WHERE language='fr'; UPDATE languages SET domain='ru.localhost' WHERE language='ru'; UPDATE languages SET domain='zh.localhost' WHERE language='zh';"
+fi
+
+if [ "$TARGET" == "@unescorg.stage" ]
+then
+echo -e "${green}Resetting your base_root to xx.srvbltydev.unesco.org${NC} \n" 
+    drush $TARGET sqlq "UPDATE languages SET domain='ar.srvbltydev.unesco.org' WHERE language='ar'; UPDATE languages SET domain='en.srvbltydev.unesco.org' WHERE language='en'; UPDATE languages SET domain='es.srvbltydev.unesco.org' WHERE language='es'; UPDATE languages SET domain='fr.srvbltydev.unesco.org' WHERE language='fr'; UPDATE languages SET domain='ru.srvbltydev.unesco.org' WHERE language='ru'; UPDATE languages SET domain='zh.srvbltydev.unesco.org' WHERE language='zh';"
+fi
+
+echo -e "${green}Resetting your local password to: unesco${NC} \n"
+drush $TARGET upwd --password="unesco" unesco
+
+echo -e "${green}Activate development specific modules${NC} \n" 
+drush $TARGET en -y devel stage_file_proxy
+
+echo -e "${green}Set variables for development${NC} \n"
+drush $TARGET variable-set stage_file_proxy_origin "http://192.168.1.193"

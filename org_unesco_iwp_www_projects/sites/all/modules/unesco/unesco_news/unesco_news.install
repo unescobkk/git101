@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * Implements hook_enable().
+ */
+function unesco_news_enable() {
+  // Clear the cache to display in Feeds as available plugin.
+  cache_clear_all('plugins:feeds:plugins', 'cache');
+}
+
+/**
+ * Moves field_country references to field_country_reference.
+ */
+function unesco_news_update_7001() {
+  $result = db_query("SELECT nid FROM {node} WHERE type IN ('article', 'unescommunity_news')");
+  foreach ($result as $row) {
+    $node = node_load($row->nid);
+    $need_update = FALSE;
+
+    if (!empty($node->field_country) && is_array($node->field_country)) {
+      foreach ($node->field_country as $langcode => $values) {
+        foreach ($values as $value) {
+          if (!empty($value['tid'])) {
+            $sql = 'SELECT n.nid FROM {node} n INNER JOIN {field_data_field_country_iso2} fdfci2 ON n.vid = fdfci2.revision_id INNER JOIN {taxonomy_term_data} ttd ON ttd.name = fdfci2.field_country_iso2_value WHERE ttd.tid = :tid AND n.language = :lang';
+            if ($country_nid = db_query($sql, array(':tid' => $value['tid'], ':lang' => $node->language))->fetchField()) {
+              // add field
+              $node->field_country_reference[$langcode][] = array('target_id' => $country_nid);
+              $need_update = TRUE;
+            }
+          }
+        }
+      }
+    }
+
+    if ($need_update) {
+      node_save($node);
+    }
+  }
+}

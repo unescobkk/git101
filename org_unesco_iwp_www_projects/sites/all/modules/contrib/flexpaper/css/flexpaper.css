@@ -1,0 +1,11 @@
+.flexpaper-viewer-container {
+  display: block;
+  background-color: rgb(212, 220, 220);
+  width: 100%;
+  height: 500px;
+}
+.flexpaper-viewer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}

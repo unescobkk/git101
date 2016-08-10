@@ -1,0 +1,15 @@
+[submodule "sites/all/modules/unesco/unesco-countries"]
+	path = sites/all/modules/unesco/unesco-countries
+	url = git@repository.unesco.org:modules/unesco-countries.git
+[submodule "sites/all/modules/unesco/unesco_configuration"]
+	path = sites/all/modules/unesco/unesco_configuration
+	url = git@repository.unesco.org:modules/unesco-configuration.git
+[submodule "sites/all/modules/unesco/unesco_leaflet"]
+	path = sites/all/modules/unesco/unesco_leaflet
+	url = git@repository.unesco.org:modules/unesco-leaflet.git
+[submodule "sites/all/themes/bunesco_common"]
+	path = sites/all/themes/bunesco_common
+	url = git@repository.unesco.org:modules/bunesco-common.git
+[submodule "sites/all/modules/unesco/unesco_authentication"]
+	path = sites/all/modules/unesco/unesco_authentication
+	url = git@repository.unesco.org:modules/unesco-authentication.git

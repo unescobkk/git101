@@ -1,0 +1,21 @@
+# Ignore configuration files that may contain sensitive information.
+src
+src/sites/sites.php
+.DS_Store
+.sass-cache
+.swo
+.swp
+*.gz
+
+# Ignore paths that contain user-generated content.
+src/sites/*/files
+src/sites/*/private
+src/files
+
+*/.htaccess
+
+htaccess.example
+sites.php.example
+settings.php.example
+apache.conf.example
+*/FirePHPCore

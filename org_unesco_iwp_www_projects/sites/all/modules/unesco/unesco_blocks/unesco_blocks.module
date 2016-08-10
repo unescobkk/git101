@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the UNESCO Blocks feature.
+ */
+
+include_once 'unesco_blocks.features.inc';

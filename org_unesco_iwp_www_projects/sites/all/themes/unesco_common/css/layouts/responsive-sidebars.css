@@ -1,0 +1,357 @@
+/**
+ * @file
+ * Positioning for responsive layout .
+ *
+ * Define CSS classes to create a table-free, 3-column, 2-column, or single
+ * column layout depending on whether blocks are enabled in the left or right
+ * columns.
+ *
+ * This layout uses the Zen Grids plugin for Compass: http://zengrids.com
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/icons\/\*\.png}line{font-family:\0000382}}
+.icons-sprite, .icons-arrow-down, .icons-pdf, .icons-plus, .icons-print, .icons-rss, .icons-search {
+  background: url('../../images/icons-s25062c2947.png') no-repeat;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-arrow-down {
+  background-position: 0 -80px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-pdf {
+  background-position: 0 -16px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-plus {
+  background-position: 0 -48px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-print {
+  background-position: 0 -32px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-rss {
+  background-position: 0 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-search {
+  background-position: 0 -64px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/icons-social\/\*\.png}line{font-family:\00003106}}
+.icons-social-sprite, .icons-social-share_facebook, .icons-social-share_google, .icons-social-share_itunes, .icons-social-share_linkedin, .icons-social-share_rss, .icons-social-share_twitter, .icons-social-share_vkontakte, .icons-social-share_weibo, .icons-social-share_youtube {
+  background: url('../../images/icons-social-sa0cda7d78b.png') no-repeat;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_facebook {
+  background-position: 0 -351px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_google {
+  background-position: 0 -132px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_itunes {
+  background-position: 0 -88px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_linkedin {
+  background-position: 0 -308px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_rss {
+  background-position: 0 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_twitter {
+  background-position: 0 -176px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_vkontakte {
+  background-position: 0 -264px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_weibo {
+  background-position: 0 -44px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_youtube {
+  background-position: 0 -220px;
+}
+
+/*
+ * Center the page.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\0000345}}
+#page,
+.region-bottom {
+  /* For screen sizes larger than 1200px, prevent excessively long lines of text
+     by setting a max-width. */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+}
+
+/*
+ * Apply the shared properties of grid items in a single, efficient ruleset.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\0000363}}
+#header,
+#content,
+#navigation,
+.region-sidebar-first,
+.region-sidebar-second,
+#footer {
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 0 !important;
+  word-wrap: break-word;
+  *behavior: url("/sites/all/libraries/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+}
+
+/*
+ * Containers for grid items and flow items.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\0000373}}
+#header,
+#main,
+#footer {
+  *position: relative;
+  *zoom: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass-extensions\/zen-grids\/stylesheets\/zen\/_grids\.scss}line{font-family:\0000352}}
+#header:before, #header:after,
+#main:before,
+#main:after,
+#footer:before,
+#footer:after {
+  content: "";
+  display: table;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass-extensions\/zen-grids\/stylesheets\/zen\/_grids\.scss}line{font-family:\0000356}}
+#header:after,
+#main:after,
+#footer:after {
+  clear: both;
+}
+
+/*
+ * Navigation bar
+ */
+@media all and (min-width: 480px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\0000382}}
+  #main {
+    padding-top: 3em;
+    /* Move all the children of #main down to make room. */
+    position: relative;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\0000386}}
+  #navigation {
+    position: absolute;
+    top: 0;
+    /* Move the navbar up inside #main's padding. */
+    height: 3em;
+    width: 240px;
+  }
+}
+@media all and (min-width: 480px) and (max-width: 959px) {
+  /*
+   * Use 3 grid columns for smaller screens.
+   */
+  /*
+   * The layout when there is only one sidebar, the left one.
+   */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003105}}
+  .sidebar-first #content {
+    /* Span 2 columns, starting in 2nd column from left. */
+    float: left;
+    width: 140px;
+    margin-left: 80px;
+    margin-right: -240px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003109}}
+  .sidebar-first .region-sidebar-first {
+    /* Span 1 column, starting in 1st column from left. */
+    float: left;
+    width: 60px;
+    margin-left: 0px;
+    margin-right: -80px;
+  }
+
+  /*
+   * The layout when there is only one sidebar, the right one.
+   */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003119}}
+  .sidebar-second #content {
+    /* Span 2 columns, starting in 1st column from left. */
+    float: left;
+    width: 140px;
+    margin-left: 0px;
+    margin-right: -160px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003123}}
+  .sidebar-second .region-sidebar-second {
+    /* Span 1 column, starting in 3rd column from left. */
+    float: left;
+    width: 60px;
+    margin-left: 160px;
+    margin-right: -240px;
+  }
+
+  /*
+   * The layout when there are two sidebars.
+   */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003133}}
+  .two-sidebars #content {
+    /* Span 2 columns, starting in 2nd column from left. */
+    float: left;
+    width: 140px;
+    margin-left: 80px;
+    margin-right: -240px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003137}}
+  .two-sidebars .region-sidebar-first {
+    /* Span 1 column, starting in 1st column from left. */
+    float: left;
+    width: 60px;
+    margin-left: 0px;
+    margin-right: -80px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003141}}
+  .two-sidebars .region-sidebar-second {
+    /* Start a new row and span all 3 columns. */
+    float: left;
+    width: 220px;
+    margin-left: 0px;
+    margin-right: -240px;
+    padding-left: 0;
+    padding-right: 0;
+    clear: left;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003146}}
+  .two-sidebars .region-sidebar-second .block {
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0 !important;
+    word-wrap: break-word;
+    *behavior: url("/sites/all/libraries/boxsizing.htc");
+    _display: inline;
+    _overflow: hidden;
+    _overflow-y: visible;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003149}}
+  .two-sidebars .region-sidebar-second .block:nth-child(3n+1) {
+    /* Span 1 column, starting in the 1st column from left. */
+    float: left;
+    width: 60px;
+    margin-left: 0px;
+    margin-right: -80px;
+    clear: left;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003153}}
+  .two-sidebars .region-sidebar-second .block:nth-child(3n+2) {
+    /* Span 1 column, starting in the 2nd column from left. */
+    float: left;
+    width: 60px;
+    margin-left: 80px;
+    margin-right: -160px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003156}}
+  .two-sidebars .region-sidebar-second .block:nth-child(3n) {
+    /* Span 1 column, starting in the 3rd column from left. */
+    float: left;
+    width: 60px;
+    margin-left: 160px;
+    margin-right: -240px;
+  }
+}
+@media all and (min-width: 960px) {
+  /*
+   * Use 5 grid columns for larger screens.
+   */
+  /*
+   * The layout when there is only one sidebar, the left one.
+   */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003174}}
+  .sidebar-first #content {
+    /* Span 4 columns, starting in 2nd column from left. */
+    float: left;
+    width: 172px;
+    margin-left: 48px;
+    margin-right: -240px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003178}}
+  .sidebar-first .region-sidebar-first {
+    /* Span 1 column, starting in 1st column from left. */
+    float: left;
+    width: 28px;
+    margin-left: 0px;
+    margin-right: -48px;
+  }
+
+  /*
+   * The layout when there is only one sidebar, the right one.
+   */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003188}}
+  .sidebar-second #content {
+    /* Span 4 columns, starting in 1st column from left. */
+    float: left;
+    width: 172px;
+    margin-left: 0px;
+    margin-right: -192px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003192}}
+  .sidebar-second .region-sidebar-second {
+    /* Span 1 column, starting in 5th column from left. */
+    float: left;
+    width: 28px;
+    margin-left: 192px;
+    margin-right: -240px;
+  }
+
+  /*
+   * The layout when there are two sidebars.
+   */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003202}}
+  .two-sidebars #content {
+    /* Span 3 columns, starting in 2nd column from left. */
+    float: left;
+    width: 124px;
+    margin-left: 48px;
+    margin-right: -192px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003206}}
+  .two-sidebars .region-sidebar-first {
+    /* Span 1 column, starting in 1st column from left. */
+    float: left;
+    width: 28px;
+    margin-left: 0px;
+    margin-right: -48px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/responsive-sidebars\.scss}line{font-family:\00003210}}
+  .two-sidebars .region-sidebar-second {
+    /* Span 1 column, starting in 5th column from left. */
+    float: left;
+    width: 28px;
+    margin-left: 192px;
+    margin-right: -240px;
+  }
+}

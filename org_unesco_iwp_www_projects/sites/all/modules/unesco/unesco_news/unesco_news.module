@@ -1,0 +1,173 @@
+<?php
+/**
+ * @file
+ * Code for the UNESCO News feature.
+ */
+
+include_once 'unesco_news.features.inc';
+
+/**
+ * Implements hook_feeds_plugins().
+ */
+function unesco_news_feeds_plugins() {
+  $info = array();
+
+  $info['UnescoNewsNodeProcessor'] = array(
+    'name' => 'UNESCO News processor',
+    'description' => 'Create and update News.',
+    'help' => 'Create and update News from parsed content.',
+    'handler' => array(
+      'parent' => 'FeedsNodeProcessor',
+      'class' => 'UnescoNewsNodeProcessor',
+      'file' => 'UnescoNewsNodeProcessor.inc',
+      'path' => drupal_get_path('module', 'unesco_news') . '/plugins',
+    ),
+  );
+
+  return $info;
+}
+
+function _unesco_news_get_url_path($source) {
+  $source = parse_url($source, PHP_URL_PATH);
+
+  if (!empty($source) && is_string($source)) {
+    // Remove "/" from the beggining and ending of string
+    if ($source[0] == '/') {
+      $source = substr($source, 1);
+    }
+    if (substr($source, -1) == '/') {
+      $source = substr($source, 0, strlen($source) - 1);
+    }
+  }
+
+  return $source;
+}
+
+/**
+ * Helper function that stores redirect register.
+ */
+function _unesco_news_store_redirect($node) {
+  if ($node->type == 'article' && !empty($node->field_url)) {
+    $field_url = reset($node->field_url);
+    $source = _unesco_news_get_url_path($field_url[0]['value']);
+
+    if (!empty($source) && is_string($source)) {
+      $result = db_select('redirect', 'r')
+        ->fields('r', array('rid'))
+        ->condition('source', $source, '=')
+        ->execute()
+        ->fetchAssoc();
+      $exists = (boolean) !empty($result);
+
+      if (!$exists) {
+        // Save redirect
+        $redirect = (object) array(
+          'rid' => NULL,
+          'type' => 'redirect',
+          'hash' => '',
+          'source' => $source,
+          'source_options' => array(),
+          'redirect' => "node/$node->nid",
+          'redirect_options' => array(),
+          'language' => $node->language,
+          'status_code' => 0,
+          'override' => FALSE,
+        );
+        redirect_save($redirect);
+      }
+    }
+  }
+}
+
+/**
+ * When a node is created, we have to:
+ *  1- relate it to the main node of translations; OR
+ *  2- set this node as the main node of translations.
+ */
+function _unesco_news_update_translations($node) {
+  if ($node->type == 'article' && !empty($node->field_url)) {
+    $field_url = reset($node->field_url);
+    $source = _unesco_news_get_url_path($field_url[0]['value']);
+
+    // Remove news/[lang-code] from the beggining of the source
+    $source = explode('/', $source);
+    array_shift($source);
+    array_shift($source);
+    $source = implode('/', $source);
+
+    $tnid = db_query('SELECT n.nid FROM {node} n INNER JOIN {field_data_field_url} fdfu ON n.nid = fdfu.entity_id AND n.vid = fdfu.revision_id WHERE fdfu.field_url_value LIKE :source AND n.tnid = n.nid', array(':source' => "%$source%"))->fetchField();
+    if (!$tnid) {
+      $tnid = $node->nid;
+    }
+
+    // Set the correct tnid in the database
+    db_update('node')
+      ->fields(array(
+        'tnid' => $tnid,
+      ))
+      ->condition('nid', $node->nid)
+      ->execute();
+  }
+}
+
+/**
+ * Implements hook_feeds_after_parse().
+ */
+function unesco_news_feeds_after_parse(FeedsSource $source, FeedsParserResult $result) {
+  $importer_id = $source->importer()->id;
+
+  if (substr($importer_id, 0, 18) == 'unesco_typo3_news_') {
+
+    // Find field_media_image xpath source
+    $source_index = '';
+    $importer_config = $source->importer()->getConfig();
+    if (is_array($importer_config['processor']['config']['mappings'])) {
+      foreach ($importer_config['processor']['config']['mappings'] as $mapping) {
+        if ($mapping['target'] == 'field_media_image') {
+          $source_index = $mapping['source'];
+          break;
+        }
+      }
+    }
+
+    if (empty($source_index)) {
+      return;
+    }
+    foreach ($result->items as $key => $item) {
+      if (!empty($item[$source_index])) {
+        $file = _unesco_news_check_media_uri($result->items[$key][$source_index]);
+        if ($file) {
+          // Replace parsed content with the existing file
+          $result->items[$key][$source_index] = $file->uri;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Aux function that checks if the file already exists.
+ * @return $file - file object, if found.
+ */
+function _unesco_news_check_media_uri($original_uri) {
+  $original_content = file_get_contents($original_uri);
+
+  if (!empty($original_content)) {
+    $parts = explode('/', $original_uri);
+    if (!empty($parts)) {
+      $filename = array_pop($parts);
+
+      $result = db_select('file_managed', 'fm')
+        ->fields('fm')
+        ->condition('filename', $filename, '=')
+        ->orderBy('fid', 'DESC')
+        ->execute();
+
+      foreach ($result as $row) {
+        if ($original_content === file_get_contents($row->uri)) {
+          return file_load($row->fid);
+        }
+      }
+    }
+  }
+}

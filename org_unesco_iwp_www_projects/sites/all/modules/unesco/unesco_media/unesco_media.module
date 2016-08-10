@@ -1,0 +1,265 @@
+<?php
+/**
+ * @file
+ * Code for the UNESCO Media feature.
+ */
+
+include_once 'unesco_media.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function unesco_media_form_media_edit_alter(&$form, &$form_state) {
+  global $language;
+
+  foreach (array_keys(field_info_instances('file', $form['#entity']->type)) as $field_name) {
+    unset($form[$field_name]);
+  }
+
+  field_attach_form('file', $form['#entity'], $form, $form_state, $language->language);
+}
+
+/**
+ * Implements hook_node_view().
+ *
+ * Add "edit media" links to media fields whenever it's necessary.
+ */
+function unesco_media_node_view($node, $view_mode, $langcode) {
+  // If you want to add a content type to be checked, add it to this array
+  $content_types = array(
+    'article',
+    'page',
+  );
+
+  if (in_array($node->type, $content_types) && file_entity_access('edit')) {
+    foreach (array_keys(field_info_instances('node', $node->type)) as $field_name) {
+      $field_info = field_info_field($field_name);
+      if ($field_info['type'] == 'file') {
+        // Check if file field is set
+        if (!empty($node->content[$field_name])) {
+          foreach ($node->content[$field_name] as $delta => $field_value) {
+            if (is_numeric($delta) && !empty($field_value['#file']->fid)) {
+              $url = "media/{$field_value['#file']->fid}/edit";
+              $options = array(
+                'query' => array('destination' => "node/$node->nid"),
+              );
+              $node->content[$field_name][$delta]['edit_media_link'] = array(
+                '#type' => 'markup',
+                '#markup' => l(t('edit media'), $url, $options),
+                '#weight' => -100,
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_media_token_to_markup_alter().
+ */
+function unesco_media_media_token_to_markup_alter(&$element, $tag_info, $settings) {
+  if ($tag_info['type'] == 'media' && !empty($tag_info['file']->type) && $tag_info['file']->type == 'image') {
+    $original_element = $element;
+    $view_mode = $original_element['#view_mode'];
+    $attribute_style = $original_element['#attributes']['style'];    
+    $original_element['#attributes']['style'] = array();
+    
+    
+    $element = array(
+      'image' => array(
+        '#type' => 'markup',
+        '#markup' => drupal_render($original_element),
+      ),
+    );
+
+    // Add caption and copyright
+    $field_names = array(
+      'field_copy',
+      'field_caption',
+    );
+
+    module_load_include('inc', 'field', 'field.attach');
+    module_load_include('inc', 'field', 'field.multilingual');
+
+    //surround captions with <figcaption>
+    $element['image']['#markup'] .=  '<figcaption>';
+
+    foreach ($field_names as $field_name) {
+      $field = field_info_field($field_name);
+      foreach (field_available_languages('file', $field) as $langcode) {
+        if (!isset($field_contents[$langcode])) {
+          $field_contents[$langcode] = field_attach_view('file', $tag_info['file'], $view_mode, $langcode);
+        }
+
+        if (!empty($field_contents[$langcode][$field_name])) {
+          // sorry about it, but I have to hardcode this span here
+          $field_contents[$langcode][$field_name][0]['#markup'] = "<span class='wysiwyg-media-{$langcode}'>" . $field_contents[$langcode][$field_name][0]['#markup'] . '</span>';
+          //surround captions with <figcaption>
+          $element['image']['#markup'] .=  drupal_render($field_contents[$langcode][$field_name]);
+        }        
+      }      
+    }
+    
+    //surround captions with <figcaption>
+    $element['image']['#markup'] .=  '</figcaption>';
+    
+    $classes = array('field-name-field-media-image', 'field-type-file');
+
+
+    //we need to move styles from img to image in order to style correctly  
+    if(isset($attribute_style)) {
+      $old_styles = preg_split("/;/", $attribute_style);
+      foreach ($old_styles as $old_style) {
+        if(strpos($old_style,'float') !== false) {
+          $classes[] = str_replace(': ','-', $old_style);
+        } 
+      }
+    }
+      
+    // surround the picture and the captions with a <figure> element in order to style properly 
+    $element['image']['#markup'] =  '<figure class="'.join($classes, ' ').'">' . $element['image']['#markup'] . '</figure>';
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function unesco_media_views_pre_render(&$view) {
+  if ($view->name == 'galleries' && $view->current_display == 'page') {
+    foreach ($view->result as $result) {
+      if ($result->taxonomy_vocabulary_machine_name == 'photo_tags') {
+        $result->taxonomy_vocabulary_machine_name = t('Photo galleries');
+      }
+      elseif ($result->taxonomy_vocabulary_machine_name == 'video_tags') {
+        $result->taxonomy_vocabulary_machine_name = t('Video galleries');
+      }
+    }
+  }
+  if (($view->name == 'video_gallery' || $view->name == 'photo_gallery') && $view->current_display == 'page_1') {
+    $taxonomy_term = taxonomy_term_load($view->args[0]);
+    $view->build_info['title'] = t('Gallery: @name', array('@name' => $taxonomy_term->name));
+  }
+}
+
+
+/**
+ * Implements hook_theme
+ */
+function unesco_media_theme(){
+  return array(
+    'unesco_media_image_link' => array(
+      'render element' => 'element',
+    )
+  );
+}
+
+/**
+ * Theme function.
+ */
+function theme_unesco_media_image_link($vars){
+  $element = $vars['element'];
+  $children = drupal_render($element['#contents']);
+  $element['#uri']['options']['html'] = TRUE;
+  return l($children, $element['#uri']['path'], $element['#uri']['options']);
+}
+
+
+/**
+ * Implements hook_file_view().
+ */
+function unesco_media_file_view($file, $view_mode, $langcode){
+  // Displays images as links.
+  $view_modes = array('file_styles_unesco_media_gallery_143x107', 'file_styles_img_title_cpt_480x249', 'file_styles_img_copy_146x89');
+  if(!empty($file->referencing_entity) && in_array($view_mode, $view_modes)) {
+    if(isset($file->referencing_entity->tid)) {
+      $taxonomy_term = $file->referencing_entity;
+      if ($taxonomy_term->vocabulary_machine_name == 'photo_tags') {
+        $path = "photo-galleries/$taxonomy_term->tid";
+      }
+      elseif ($taxonomy_term->vocabulary_machine_name == 'video_tags') {
+        $path = "video-galleries/$taxonomy_term->tid";
+      }
+    }
+    if(!empty($path)) {
+      foreach (element_children($file->content) as $key) {
+        if ($key == 'file' || strpos($key, 'field_') === 0) {
+          $file->content[$key] = array(
+            '#contents' => $file->content[$key],
+            '#uri' => array('path' => $path),
+            '#theme' => 'unesco_media_image_link'
+          );
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_pathauto().
+ */
+function unesco_media_pathauto($op) {
+  $settings = new stdClass();
+  $settings->module = 'unesco_media';
+  $settings->groupheader = t('Galleries paths');
+  $settings->patterndescr = t('Default path pattern');
+  $settings->patterndefault = 'photo-galleries/[term:name]';
+  $settings->token_type = 'term';
+  $settings->patternitems = array(
+    'photo_gallery' => t('Photo galleries'),
+    'video_gallery' => t('Video galleries'),
+  );
+  $settings->batch_update_callback = 'unesco_media_pathauto_bulkupdate'; 
+  return $settings;
+}
+
+/**
+ * Helper function to create the alias
+ */
+function unesco_media_create_alias($term, $op) {
+  module_load_include('inc', 'pathauto');
+  if ($term->vocabulary_machine_name == 'photo_tags') {
+    pathauto_create_alias('unesco_media', $op, 'photo-galleries/' . $term->tid, array('term' => $term), 'photo_gallery', $term->language);
+  }
+  elseif ($term->vocabulary_machine_name == 'video_tags') {
+    pathauto_create_alias('unesco_media', $op, 'video-galleries/' . $term->tid, array('term' => $term), 'video_gallery', $term->language);
+  }
+}
+
+/**
+ * Implements hook_node_insert.
+ */
+function unesco_media_taxonomy_term_insert($term) {
+  if(in_array($term->vocabulary_machine_name, array('photo_tags', 'video_tags'))) {
+    unesco_media_create_alias($term, 'insert');
+  }
+}
+
+/**
+ * Implements hook_node_update.
+ */
+function unesco_media_taxonomy_term_update($term) {
+  if(in_array($term->vocabulary_machine_name, array('photo_tags', 'video_tags'))) {
+    $path = unesco_media_create_alias($term, 'update');
+  }
+}
+
+/**
+ * Implements hook_pathauto_bulkupdate.
+ */
+function unesco_media_pathauto_bulkupdate() {
+  $query = db_select('taxonomy_term_data', 't');
+  $query->join('taxonomy_vocabulary', 'v', 't.vid=v.vid');
+  $query
+    ->condition('v.machine_name', array('photo_tags', 'video_tags'), 'IN')
+    ->fields('t', array('tid'));
+  $results = $query->execute()->fetchCol();
+  $count = 0;
+  foreach($results as $tid) {
+    $term = taxonomy_term_load($tid);
+    unesco_media_create_alias($term, 'bulkupdate');
+    $count++;
+  }
+  drupal_set_message(t('@count terms were updated', array('@count' => $count)));
+}

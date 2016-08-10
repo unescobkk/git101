@@ -1,0 +1,64 @@
+<?php
+/**
+ * @file
+ * Code for the UNESCO Theme pages feature.
+ */
+
+include_once 'unesco_theme_pages.features.inc';
+
+/**
+ * Implementation of hook_form_alter()
+ */
+function unesco_theme_pages_form_alter(&$form, $form_state, $form_id) {
+  if (strpos($form_id, '_node_form')) {
+    if (isset($form['field_theme_page'])) {
+      $new_options = $processed_subthemes = array();
+      $options = &$form['field_theme_page'][LANGUAGE_NONE]['#options'];
+      $new_options['_none'] = $options['_none'];
+      unset($options['_none']);
+      $new_options[t('Parent theme pages')] = $new_options[t('Independent theme pages')] = array();
+      foreach ($options as $nid => $title) {
+        $subthemes = unesco_theme_pages_get_subthemes($nid);
+        if (!empty($subthemes)) {
+          $new_options[t('Parent theme pages')][$nid] = $title;
+          $new_options[$title] = array();
+          foreach ($subthemes as $subtheme) {
+            $new_options[$title][$subtheme] = $options[$subtheme];
+            unset($options[$subtheme]);
+            $processed_subthemes[] = $subtheme;
+            unset($new_options[t('Independent theme pages')][$subtheme]);
+          }
+        }
+        elseif (!in_array($nid, $processed_subthemes)) {
+          $new_options[t('Independent theme pages')][$nid] = $title;
+        }
+      }
+      $options = $new_options;
+    }
+  }
+}
+
+/**
+ * Gets the subthemes of a specific theme
+ */
+function unesco_theme_pages_get_subthemes($nid) {
+  $subthemes = &drupal_static(__FUNCTION__);
+
+  if (!isset($subthemes[$nid])) {
+    $subthemes[$nid] = array();
+
+    $query = db_query("
+      SELECT entity_id
+      FROM field_data_field_parent_theme
+      WHERE deleted <> 1
+      AND entity_type = 'node'
+      AND field_parent_theme_target_id = :nid", array(':nid' => $nid));
+
+    foreach ($query as $node) {
+      $subthemes[$nid][] = $node->entity_id;
+    }
+  }
+
+  return $subthemes[$nid];
+}
+

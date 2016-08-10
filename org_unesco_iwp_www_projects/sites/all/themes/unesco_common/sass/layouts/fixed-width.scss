@@ -1,0 +1,241 @@
+/**
+ * @file
+ * Positioning for a fixed-width, desktop-centric layout.
+ *
+ * Define CSS classes to create a table-free, 3-column, 2-column, or single
+ * column layout depending on whether blocks are enabled in the left or right
+ * columns.
+ *
+ * This layout uses the Zen Grids plugin for Compass: http://zengrids.com
+ */
+
+@import "base";
+
+
+// We are going to create a 980px wide, 5 column grid with 20px gutters between
+// columns (applied as 10px of left/right padding on each column).
+$zen-column-count:  24;
+$zen-column-width:  30px;
+$zen-gutter-width:  10px;
+$zen-grid-width:    984px;
+
+// IE6-7 don't support box-sizing: border-box. We can fix this in 1 of 2 ways:
+// - (Preferred) Install the box-sizing polyfill and set the variable below to
+//   the absolute path URL to the boxsizing.htc file.
+//   @see https://github.com/Schepp/box-sizing-polyfill
+     $box-sizing-polyfill-path: "/sites/all/libraries/boxsizing.htc" !default;
+// - Use the same CSS unit for grid width and gutter width (use px for both or
+//   use % for both, etc.) and set the box-sizing variable to content-box.
+     $zen-box-sizing: content-box;
+
+
+// You can generate more efficient CSS if you manually apply the
+// zen-grid-item-base mixin to all grid items from within a single ruleset.
+$zen-auto-include-item-base: false;
+// $zen-auto-include-flow-item-base: false;
+
+
+/*
+ * Center the page.
+ */
+
+#footer-wrapper {
+  width:100%;
+  text-align:center;
+}
+
+#page,
+#footer,
+.region-bottom {
+  /* If you want to make the page a fixed width and centered in the viewport,
+   * this is the standards-compliant way to do that. */
+  margin-left: auto;
+  margin-right: auto;
+  width: $zen-grid-width;
+}
+
+/*
+ * Apply the shared properties of grid items in a single, efficient ruleset.
+ */
+// See the note about $zen-auto-include-item-base above.
+
+#header,
+#content,
+#navigation,
+.region-sidebar-first,
+.region-sidebar-second,
+#footer,
+#secondary-menu,
+#name-and-slogan,
+#block-locale-language,
+#block-om-maximenu-om-maximenu-1,
+#block-system-user-menu,
+#block-menu-menu-footer-human-resources,
+#block-menu-menu-activity-management-tools,
+#block-menu-menu-administrative-texts,
+#block-menu-menu-financial-tools,
+#block-menu-menu-information-services,
+#block-menu-menu-process-management-tools,
+#block-menu-menu-translation-tools {
+  @include zen-grid-item-base();
+}
+
+/*
+ * Containers for grid items and flow items.
+ */
+
+#header,
+#main,
+#footer,
+#navigation {
+  @include zen-grid-container();
+  @include zen-nested-container();    
+}
+
+
+#highlighteds {
+  @include zen-grid-item-base();
+  @include zen-grid-container();
+  @include zen-grid-item(24,1);
+  @include zen-clear(both);
+
+  .breadcrumb {
+    @include zen-grid-item-base();
+    @include zen-grid-item(18,1);
+  }  
+  .region-highlighted {
+    @include zen-grid-item-base();
+    @include zen-grid-item(6,1,right);
+  }
+}
+
+#secondary-menu {
+  @include zen-clear(both);
+  @include zen-grid-item(24,1);  
+}
+
+#name-and-slogan {
+  @include zen-clear(both);
+  @include zen-grid-item(24,1);
+}
+
+#block-om-maximenu-om-maximenu-2 {
+  @include zen-grid-item(24,1);
+  @include zen-clear(both);
+}
+
+#block-search-form {
+  @include zen-grid-item(5, 10, left);  
+}
+
+#block-system-user-menu,
+#block-menu-menu-user-menu-login {
+  @include zen-grid-item(7, 1, right); 
+  @include zen-grid-container();  
+  @include zen-nested-container();
+}
+
+#block-locale-language {
+  @include zen-grid-item(6,1);
+}
+
+#block-system-user-menu {
+  @include zen-grid-item(3, 1, right);
+}
+
+/*Footer blocks*/
+
+#footer {
+  #block-menu-menu-footer-info {
+    @include zen-grid-item(24,1);  
+  }
+  
+  .block-menu {
+    @include zen-grid-flow-item( 4 );
+    @include zen-float();
+      .block-title {
+        color:white;
+        font-size:11px;
+        font-weight:bold;
+
+      }
+      a {
+        font-size:11px;
+        font-weight:normal;
+      }
+  } 
+}
+
+
+
+
+/*
+ * Navigation bar
+ */
+
+#main {
+  padding-top: 4em; /* Move all the children of #main down to make room. */
+  position: relative;
+}
+#navigation {
+  position: absolute;
+  top: 0; /* Move the navbar up inside #main's padding. */
+  height: 3em;
+  width: $zen-grid-width;
+}
+
+.no-sidebars {
+  #content {
+    @include zen-clear(both);
+    @include zen-grid-item(24,1);
+  }
+}
+
+/*
+ * The layout when there is only one sidebar, the left one.
+ */
+
+.sidebar-first {
+  #content { /* Span 4 columns, starting in 2nd column from left. */
+    @include zen-grid-item(18, 7);
+    @include zen-clear(left);
+  }
+
+  .region-sidebar-first { /* Span 1 column, starting in 1st column from left. */
+    @include zen-grid-item(6, 1);
+  }
+}
+
+/*
+ * The layout when there is only one sidebar, the right one.
+ */
+
+.sidebar-second {
+  #content { /* Span 4 columns, starting in 1st column from left. */
+    @include zen-grid-item(18, 1);
+    @include zen-clear(left);
+  }
+
+  .region-sidebar-second { /* Span 1 column, starting in 5th column from left. */
+    @include zen-grid-item(6, 19);
+    @include zen-clear(right);
+  }
+}
+
+/*
+ * The layout when there are two sidebars.
+ */
+
+.two-sidebars {
+  #content { /* Span 3 columns, starting in 2nd column from left. */
+    @include zen-grid-item(3, 2);
+  }
+
+  .region-sidebar-first { /* Span 1 column, starting in 1st column from left. */
+    @include zen-grid-item(1, 1);
+  }
+
+  .region-sidebar-second { /* Span 1 column, starting in 5th column from left. */
+    @include zen-grid-item(1, 5);
+  }
+}

@@ -1,0 +1,447 @@
+/**
+ * @file
+ * Positioning for a fixed-width, desktop-centric layout.
+ *
+ * Define CSS classes to create a table-free, 3-column, 2-column, or single
+ * column layout depending on whether blocks are enabled in the left or right
+ * columns.
+ *
+ * This layout uses the Zen Grids plugin for Compass: http://zengrids.com
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/icons\/\*\.png}line{font-family:\0000382}}
+.icons-sprite, .icons-arrow-down, .icons-pdf, .icons-plus, .icons-print, .icons-rss, .icons-search {
+  background: url('../../images/icons-s25062c2947.png') no-repeat;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-arrow-down {
+  background-position: 0 -80px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-pdf {
+  background-position: 0 -16px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-plus {
+  background-position: 0 -48px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-print {
+  background-position: 0 -32px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-rss {
+  background-position: 0 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-search {
+  background-position: 0 -64px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/icons-social\/\*\.png}line{font-family:\00003106}}
+.icons-social-sprite, .icons-social-share_facebook, .icons-social-share_google, .icons-social-share_itunes, .icons-social-share_linkedin, .icons-social-share_rss, .icons-social-share_twitter, .icons-social-share_vkontakte, .icons-social-share_weibo, .icons-social-share_youtube {
+  background: url('../../images/icons-social-sa0cda7d78b.png') no-repeat;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_facebook {
+  background-position: 0 -351px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_google {
+  background-position: 0 -132px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_itunes {
+  background-position: 0 -88px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_linkedin {
+  background-position: 0 -308px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_rss {
+  background-position: 0 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_twitter {
+  background-position: 0 -176px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_vkontakte {
+  background-position: 0 -264px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_weibo {
+  background-position: 0 -44px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_youtube {
+  background-position: 0 -220px;
+}
+
+/*
+ * Center the page.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\0000342}}
+#footer-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\0000349}}
+#page,
+#footer,
+.region-bottom {
+  /* If you want to make the page a fixed width and centered in the viewport,
+   * this is the standards-compliant way to do that. */
+  margin-left: auto;
+  margin-right: auto;
+  width: 984px;
+}
+
+/*
+ * Apply the shared properties of grid items in a single, efficient ruleset.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\0000379}}
+#header,
+#content,
+#navigation,
+.region-sidebar-first,
+.region-sidebar-second,
+#footer,
+#secondary-menu,
+#name-and-slogan,
+#block-locale-language,
+#block-om-maximenu-om-maximenu-1,
+#block-system-user-menu,
+#block-menu-menu-footer-human-resources,
+#block-menu-menu-activity-management-tools,
+#block-menu-menu-administrative-texts,
+#block-menu-menu-financial-tools,
+#block-menu-menu-information-services,
+#block-menu-menu-process-management-tools,
+#block-menu-menu-translation-tools {
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 0 !important;
+  word-wrap: break-word;
+  *behavior: url("/sites/all/libraries/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+}
+
+/*
+ * Containers for grid items and flow items.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\0000390}}
+#header,
+#main,
+#footer,
+#navigation {
+  *position: relative;
+  *zoom: 1;
+  padding-left: 0;
+  padding-right: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass-extensions\/zen-grids\/stylesheets\/zen\/_grids\.scss}line{font-family:\0000352}}
+#header:before, #header:after,
+#main:before,
+#main:after,
+#footer:before,
+#footer:after,
+#navigation:before,
+#navigation:after {
+  content: "";
+  display: table;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass-extensions\/zen-grids\/stylesheets\/zen\/_grids\.scss}line{font-family:\0000356}}
+#header:after,
+#main:after,
+#footer:after,
+#navigation:after {
+  clear: both;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\0000396}}
+#highlighteds {
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 0 !important;
+  word-wrap: break-word;
+  *behavior: url("/sites/all/libraries/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  *position: relative;
+  *zoom: 1;
+  float: left;
+  width: 974px;
+  margin-left: 0px;
+  margin-right: -984px;
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass-extensions\/zen-grids\/stylesheets\/zen\/_grids\.scss}line{font-family:\0000352}}
+#highlighteds:before, #highlighteds:after {
+  content: "";
+  display: table;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass-extensions\/zen-grids\/stylesheets\/zen\/_grids\.scss}line{font-family:\0000356}}
+#highlighteds:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003102}}
+#highlighteds .breadcrumb {
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 0 !important;
+  word-wrap: break-word;
+  *behavior: url("/sites/all/libraries/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  float: left;
+  width: 728px;
+  margin-left: 0px;
+  margin-right: -738px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003106}}
+#highlighteds .region-highlighted {
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 0 !important;
+  word-wrap: break-word;
+  *behavior: url("/sites/all/libraries/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  float: right;
+  width: 236px;
+  margin-right: 0px;
+  margin-left: -246px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003112}}
+#secondary-menu {
+  clear: both;
+  float: left;
+  width: 974px;
+  margin-left: 0px;
+  margin-right: -984px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003117}}
+#name-and-slogan {
+  clear: both;
+  float: left;
+  width: 974px;
+  margin-left: 0px;
+  margin-right: -984px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003122}}
+#block-om-maximenu-om-maximenu-2 {
+  float: left;
+  width: 974px;
+  margin-left: 0px;
+  margin-right: -984px;
+  clear: both;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003127}}
+#block-search-form {
+  float: left;
+  width: 195px;
+  margin-left: 369px;
+  margin-right: -574px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003132}}
+#block-system-user-menu,
+#block-menu-menu-user-menu-login {
+  float: right;
+  width: 277px;
+  margin-right: 0px;
+  margin-left: -287px;
+  *position: relative;
+  *zoom: 1;
+  padding-left: 0;
+  padding-right: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass-extensions\/zen-grids\/stylesheets\/zen\/_grids\.scss}line{font-family:\0000352}}
+#block-system-user-menu:before, #block-system-user-menu:after,
+#block-menu-menu-user-menu-login:before,
+#block-menu-menu-user-menu-login:after {
+  content: "";
+  display: table;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass-extensions\/zen-grids\/stylesheets\/zen\/_grids\.scss}line{font-family:\0000356}}
+#block-system-user-menu:after,
+#block-menu-menu-user-menu-login:after {
+  clear: both;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003138}}
+#block-locale-language {
+  float: left;
+  width: 236px;
+  margin-left: 0px;
+  margin-right: -246px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003142}}
+#block-system-user-menu {
+  float: right;
+  width: 113px;
+  margin-right: 0px;
+  margin-left: -123px;
+}
+
+/*Footer blocks*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003149}}
+#footer #block-menu-menu-footer-info {
+  float: left;
+  width: 974px;
+  margin-left: 0px;
+  margin-right: -984px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003153}}
+#footer .block-menu {
+  width: 154px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 0 !important;
+  word-wrap: break-word;
+  *behavior: url("/sites/all/libraries/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  padding-left: 0;
+  padding-right: 8.333px;
+  margin-right: 1.667px;
+  float: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003156}}
+#footer .block-menu .block-title {
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003162}}
+#footer .block-menu a {
+  font-size: 11px;
+  font-weight: normal;
+}
+
+/*
+ * Navigation bar
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003176}}
+#main {
+  padding-top: 4em;
+  /* Move all the children of #main down to make room. */
+  position: relative;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003180}}
+#navigation {
+  position: absolute;
+  top: 0;
+  /* Move the navbar up inside #main's padding. */
+  height: 3em;
+  width: 984px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003188}}
+.no-sidebars #content {
+  clear: both;
+  float: left;
+  width: 974px;
+  margin-left: 0px;
+  margin-right: -984px;
+}
+
+/*
+ * The layout when there is only one sidebar, the left one.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003199}}
+.sidebar-first #content {
+  /* Span 4 columns, starting in 2nd column from left. */
+  float: left;
+  width: 728px;
+  margin-left: 246px;
+  margin-right: -984px;
+  clear: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003204}}
+.sidebar-first .region-sidebar-first {
+  /* Span 1 column, starting in 1st column from left. */
+  float: left;
+  width: 236px;
+  margin-left: 0px;
+  margin-right: -246px;
+}
+
+/*
+ * The layout when there is only one sidebar, the right one.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003214}}
+.sidebar-second #content {
+  /* Span 4 columns, starting in 1st column from left. */
+  float: left;
+  width: 728px;
+  margin-left: 0px;
+  margin-right: -738px;
+  clear: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003219}}
+.sidebar-second .region-sidebar-second {
+  /* Span 1 column, starting in 5th column from left. */
+  float: left;
+  width: 236px;
+  margin-left: 738px;
+  margin-right: -984px;
+  clear: right;
+}
+
+/*
+ * The layout when there are two sidebars.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003230}}
+.two-sidebars #content {
+  /* Span 3 columns, starting in 2nd column from left. */
+  float: left;
+  width: 113px;
+  margin-left: 41px;
+  margin-right: -164px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003234}}
+.two-sidebars .region-sidebar-first {
+  /* Span 1 column, starting in 1st column from left. */
+  float: left;
+  width: 31px;
+  margin-left: 0px;
+  margin-right: -41px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/layouts\/fixed-width\.scss}line{font-family:\00003238}}
+.two-sidebars .region-sidebar-second {
+  /* Span 1 column, starting in 5th column from left. */
+  float: left;
+  width: 31px;
+  margin-left: 164px;
+  margin-right: -205px;
+}

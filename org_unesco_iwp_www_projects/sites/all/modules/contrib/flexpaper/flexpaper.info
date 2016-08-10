@@ -1,0 +1,14 @@
+name = Flexpaper
+description = "Provides a flexpaper formatter for the file fields."
+package = Flexpaper
+core = 7.x
+dependencies[] = libraries
+dependencies[] = file
+configure = admin/config/flexpaper
+
+; Information added by Drupal.org packaging script on 2014-05-06
+version = "7.x-1.2"
+core = "7.x"
+project = "flexpaper"
+datestamp = "1399397628"
+

@@ -1,0 +1,17 @@
+name = "qTip"
+description = "Stylish tooltips for your web pages."
+package = User interface
+core = 7.x
+
+dependencies[] = libraries
+
+files[] = qtip.module
+files[] = qtip.admin.inc
+files[] = qtip.install
+
+; Information added by drupal.org packaging script on 2012-04-18
+version = "7.x-2.x-dev"
+core = "7.x"
+project = "qtip"
+datestamp = "1334709573"
+

@@ -1,0 +1,208 @@
+/**
+ * @file
+ * Comment Styling
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/icons\/\*\.png}line{font-family:\0000382}}
+.icons-sprite, .icons-arrow-down, .icons-pdf, .icons-plus, .icons-print, .icons-rss, .icons-search {
+  background: url('../images/icons-s25062c2947.png') no-repeat;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-arrow-down {
+  background-position: 0 -80px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-pdf {
+  background-position: 0 -16px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-plus {
+  background-position: 0 -48px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-print {
+  background-position: 0 -32px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-rss {
+  background-position: 0 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-search {
+  background-position: 0 -64px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/icons-social\/\*\.png}line{font-family:\00003106}}
+.icons-social-sprite, .icons-social-share_facebook, .icons-social-share_google, .icons-social-share_itunes, .icons-social-share_linkedin, .icons-social-share_rss, .icons-social-share_twitter, .icons-social-share_vkontakte, .icons-social-share_weibo, .icons-social-share_youtube {
+  background: url('../images/icons-social-sa0cda7d78b.png') no-repeat;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_facebook {
+  background-position: 0 -351px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_google {
+  background-position: 0 -132px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_itunes {
+  background-position: 0 -88px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_linkedin {
+  background-position: 0 -308px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_rss {
+  background-position: 0 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_twitter {
+  background-position: 0 -176px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_vkontakte {
+  background-position: 0 -264px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_weibo {
+  background-position: 0 -44px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/share\/compass\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-social-share_youtube {
+  background-position: 0 -220px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\000039}}
+.comments {
+  /* Wrapper for the list of comments and its title */
+  margin: 1.5em 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000312}}
+.comments h2.title {
+  /* Heading for the list of comments */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000315}}
+.comments h2.comment-form {
+  /* Heading for the comment form */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000319}}
+.comment {
+  /* Wrapper for a single comment */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000321}}
+.comment.comment-preview {
+  /* Preview of the comment before submitting new or updated comment */
+  background-color: #ffffea;
+  /* Drupal core will use a #ffffea background. See #1110842 */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000325}}
+.comment.new {
+  /* A new comment since the user last viewed the page. */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000328}}
+.comment.first {
+  /* The first comment in the list of comments */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000331}}
+.comment.last {
+  /* The last comment in the list of comments */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000334}}
+.comment.odd {
+  /* An odd-numbered comment in the list of comments */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000337}}
+.comment.even {
+  /* An even-numbered comment in the list of comments */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000340}}
+.comment.comment-by-anonymous {
+  /* A comment created by an anonymous user */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000343}}
+.comment.comment-by-node-author {
+  /* A comment created by the node's author */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000346}}
+.comment.comment-by-viewer {
+  /* A comment created by the current user */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000349}}
+.comment h3.comment-title {
+  /* Comment title */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000352}}
+.comment .new {
+  /* "New" marker for comments that are new for the current user */
+  color: #c00;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000356}}
+.comment .user-picture {
+  /* The picture of the comment author */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000359}}
+.comment .submitted {
+  /* The "posted by" information */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000362}}
+.comment .permalink {
+  /* Comment's permalink wrapper */
+  text-transform: uppercase;
+  font-size: 75%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000367}}
+.comment .user-signature {
+  /* The user's signature */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000370}}
+.comment ul.links {
+  /* Comment links. See also the ul.links declaration in the pages.css. */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000374}}
+.indented {
+  /* Nested comments are indented */
+  margin-left: 30px;
+  /* Drupal core uses a 25px left margin */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000378}}
+.comment-unpublished {
+  /* Unpublished comments */
+  /* background-color: #fff4f4; */
+  /* Drupal core uses a #fff4f4 background */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/comments\.scss}line{font-family:\0000381}}
+.comment-unpublished p.unpublished {
+  /* The word "Unpublished" displayed underneath the content. */
+  height: 0;
+  overflow: visible;
+  color: #d8d8d8;
+  font-size: 75px;
+  line-height: 1;
+  font-family: Impact, "Arial Narrow", Helvetica, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  word-wrap: break-word;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/denix\/git\/unesco-website\/src\/sites\/all\/themes\/unesco_common\/sass\/_custom\.scss}line{font-family:\0000361}}
+.lt-ie8 .comment-unpublished p.unpublished > * {
+  position: relative;
+}

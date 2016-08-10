@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the UNESCO Page feature.
+ */
+
+include_once 'unesco_page.features.inc';

@@ -1,0 +1,8 @@
+cp src/.htaccess drupal-7.32/
+cp src/robots.txt drupal-7.32/
+cp src/favicon.ico drupal-7.32/
+unlink src
+ln -s drupal-7.32/ src
+cd src
+rm -rf sites/
+ln -s ../sites .

@@ -1,0 +1,110 @@
+<?php
+/**
+ * @file
+ * Code for the UNESCO Site Pages feature.
+ */
+
+include_once 'unesco_site_pages.features.inc';
+
+/**
+ * Implementation of hook_init()
+ */
+function unesco_site_pages_init() {
+  if (arg(0) == 'node' && !arg(2)) {
+    $node = menu_get_object();
+    if (isset($node->type) && $node->type == 'theme_page') {
+      drupal_add_js(drupal_get_path('module', 'unesco_site_pages') . '/js/unesco_site_pages.more.js');
+    }
+  }
+}
+
+/**
+ * Implementation of hook_page_alter()
+ * Denix - 7 may 2013 - implemented the links and document block via context
+ */
+/*
+function unesco_site_pages_page_alter(&$page) {
+  $node = menu_get_object();
+
+  if (isset($node->type) && in_array($node->type, array('theme_page', 'country_profile'))) {
+    // hides the resources sidebar block
+    unset($page['sidebar_second']['menu_menu-resources']);
+
+    // moves to the proper place
+    $content = $page['content']['system_main']['#weight'] = -100;
+    $news = $page['content']['views_site_page_news_infocus-block']['#weight'] = -90;
+
+    // create links "block" (not an actual block)
+    if (!empty($node->field_link[LANGUAGE_NONE])) {
+      $items = array();
+      foreach ($node->field_link[LANGUAGE_NONE] as $link) {
+        $items[] = array(
+          'title' => $link['title'],
+          'href' => $link['url'],
+        );
+      }
+      $page['sidebar_second']['links'] = array(
+        '#theme_wrappers' => array('block'),
+        '#block' => (object) array(
+          'subject' => t('Related links'),
+          'module' => 'unesco_site_pages',
+          'delta' => 'related_links',
+        ),
+        'links' => array(
+          '#theme' => 'links',
+          '#links' => $items,
+          '#attributes' => array(
+            'class' => array('menu'),
+          ),
+        ),
+      );
+    }
+    $links = $page['sidebar_second']['links']['#weight'] = -100;
+  }
+}
+ */
+
+/**
+ * Implementation of hook_preprocess_page()
+ */
+function unesco_site_pages_preprocess_page(&$variables) {
+  $node = menu_get_object();
+
+  if (isset($node->type) && in_array($node->type, array('theme_page', 'country_profile'))) {
+    $variables['title'] = '';
+  }
+}
+
+/**
+ * Implementation of hook_preprocess_node()
+ */
+function unesco_site_pages_preprocess_node(&$variables) {
+  if (in_array($variables['node']->type, array('theme_page', 'country_profile'))) {
+    $title = array(
+      '#markup' => '<h1 id="page-title">' . drupal_get_title() . '</h1>',
+      '#weight' => -100,
+    );
+    array_unshift($variables['content'], $title);
+  }
+}
+
+/**
+ * Implementation of hook_views_pre_view
+ */
+function unesco_site_pages_views_pre_view(&$view) {
+  if (strpos($view->name, 'site_page_') === 0) {
+    $node = menu_get_object();
+
+# Issue #442    
+    if (isset($node->type) && $node->type == 'theme_page') {
+#      $subthemes = unesco_theme_pages_get_subthemes($node->nid);
+#      $args = array_merge(array($node->nid), $subthemes);
+      $view->args[0] = $node->nid;
+      $view->args[1] = 'all';
+    }
+    if (isset($node->type) && $node->type == 'country_profile') {
+      $view->args[0] = 'all';
+      $view->args[1] = $node->nid;
+    }
+  }
+}

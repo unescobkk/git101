@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_url_outbound_alter().
+ * Fixes URLs in the subsites. To enable its functionality, you need to add something
+ * like this in your settings.php:
+ *   $conf['unesco_subsite_url'] = 'eshop';
+ */
+function unesco_i18n_url_outbound_alter(&$path, &$options, $original_path) {
+  global $conf;
+
+  if (empty($options['external']) && !empty($options['base_url']) && !empty($conf['unesco_subsite_url'])) {
+    $options['base_url'] .= '/' . $conf['unesco_subsite_url'];
+  }
+}
